@@ -1,35 +1,48 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
+import SidePanel from "./SidePanel";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [isPanelOpen, setIsPanelOpen] = useState(false);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+    <div
+      style={{
+        position: "relative",
+        height: "100vh",
+        padding: "20px",
+      }}
+    >
+      <h1>SidePanel Component Demo</h1>
+
+      <div style={{ marginBottom: "20px" }}>
+        <button
+          onClick={() => setIsPanelOpen(true)}
+          style={{
+            padding: "12px 24px",
+            backgroundColor: "#007bff",
+            color: "white",
+            border: "none",
+            borderRadius: "4px",
+            cursor: "pointer",
+            fontSize: "16px",
+          }}
+        >
+          Open Side Panel
         </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+
+      <SidePanel
+        isOpen={isPanelOpen}
+        onClose={() => setIsPanelOpen(false)}
+        title={<div>My Side Panel</div>}
+      >
+        <div>
+          <h3>Panel Content</h3>
+        </div>
+      </SidePanel>
+    </div>
+  );
 }
 
-export default App
+export default App;
